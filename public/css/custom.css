@@ -1,0 +1,6 @@
+
+/*Custom global CSS stylesheet*/
+
+.row img { /*limits the thumbnail size of adoptions/index view*/
+    max-height: 300px !important;
+}
