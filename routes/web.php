@@ -13,3 +13,5 @@
 
 Route::get('/', 'PagesController@index'); //Calls index method in controller and that method routes to index page. All routes go through conroller
 //Route::get('/', 'PagesController@index');
+
+Route::resource('Animal', 'AnimalController');
