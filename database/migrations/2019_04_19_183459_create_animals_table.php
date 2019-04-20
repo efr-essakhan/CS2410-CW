@@ -15,7 +15,7 @@ class CreateAnimalsTable extends Migration
     {
         Schema::create('animals', function (Blueprint $table) {
             $table->bigIncrements('animal_id');
-            $table->string('name');
+            $table->string('nameTitle');
             $table->date('dob');
             $table->string('description');
             $table->string('animaltype');

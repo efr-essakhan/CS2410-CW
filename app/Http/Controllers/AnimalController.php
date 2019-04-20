@@ -25,7 +25,7 @@ class AnimalController extends Controller
      */
     public function create()
     {
-        //
+        return view('animals.create');
     }
 
     /**
@@ -47,7 +47,9 @@ class AnimalController extends Controller
      */
     public function show($id)
     {
-        //
+        // http://astonanimal.k/Animal/{id} will link to this page
+        $animal = Animal::find($id);
+        return view('animals.show')->with('animal', $animal);
     }
 
     /**

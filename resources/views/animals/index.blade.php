@@ -16,12 +16,11 @@
                                     <div class="card mb-4 shadow-sm">
                                         <img src="http://ecx.images-amazon.com/images/I/51ZU%2BCvkTyL.jpg" alt="..." class="img-responsive">
                                         <div class="card-body">
-                                            <h3>{{$animal->name}}</h3>
-                                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. ad-in to additional content. This content is a little bit longer ad-in to additional content. This content is a little bit longer ad-in to additional content. This content is a little bit longer ad-in to additional content. This content is a little bit longer ad-in to additional content. This content is a little bit longer ad-in to additional content. This content is a little bit longer</p>
+                                            <h3>{{$animal->nameTitle}}</h3>  <!-- Name -->
+                                            <p class="card-text">This is a wider cardr</p> <!-- Description -->
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="btn-group">
-                                                    <a href="#" class="btn btn-success pull-right" role="button">Request Adoption</a>
-                                                    <a href="#" class="btn btn-success pull-right" role="button">View profile</a>
+                                                    <a href="/Animal/{{$animal->animal_id}}" class="btn btn-success pull-right" role="button">View profile</a>
                                                 </div>
                                                 <small class="text-muted">9 mins</small>
                                             </div>
