@@ -29,11 +29,15 @@
                   
                 <p class="lead font-weight-bold">Description</p>
     
-                <p>{{$animal->description}}</p>
+                <p>!!$animal->description!!</p> <!--!! instead of {} to allow html parsing-->
     
                 <form class="d-flex justify-content-left">
-                  <!-- Default input -->
+
+                  <!-- Send Request button -->
                   <button class="btn btn-primary btn-md my-0 p" type="submit">Request Adoption</button>
+
+                  <!-- Edit button -->
+                  <a class="btn btn-info" role="button" href="/Animal/{{$animal->animal_id}}/edit">Edit Profile</a>
     
                 </form>
     

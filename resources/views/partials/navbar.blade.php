@@ -16,6 +16,12 @@
                     <li class="nav-item">
                         <a class="nav-link " href="/services">Services</a>
                     </li>
+                    <li class="nav-item">
+                            <a class="nav-link " href="/Animal">Profiles</a>
+                    </li>
+                    <li class="nav-item">
+                            <a class="nav-link " href="/Animal/create">Create Profile</a>
+                    </li>
                     <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-user"></i> User Account</a>
                             <div class="dropdown-menu" aria-labelledby="dropdown04">

@@ -18,13 +18,13 @@
              <!-- Text input-->
             <div class="form-group">
                 <label for="body">Profile Description</label>
-                <textarea class="form-control" name="body" cols="30" rows="10" placeholder="Body Text"></textarea>
+                <textarea class="form-control" name="body" id="article-ckeditor" cols="30" rows="10" placeholder="Body Text"></textarea>
             </div>
 
             <!-- Drop down list-->
             <div class="form-group">
                 <label for="body">Animal Type</label>
-                <select id="sadsad" name="sadsad" class="form-control">
+                <select id="sadsad" name="animaltype" class="form-control">
                 <option value="Bird">Bird</option>
                 <option value="Cat">Cat</option>
                 <option value="Dog">Dog</option>
