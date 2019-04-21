@@ -1,6 +1,5 @@
 
-@extends('layouts/master')
-
+@extends('layouts/app')
 @section('title')
     AstonAdoptAnimals
 @endsection

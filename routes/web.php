@@ -11,7 +11,10 @@
 |
 */
 
-Route::get('/', 'PagesController@index'); //Calls index method in controller and that method routes to index page. All routes go through conroller
+Route::get('/', 'AnimalController@index'); //Calls index method in controller and that method routes to index page. All routes go through conroller
 //Route::get('/', 'PagesController@index');
 
 Route::resource('Animal', 'AnimalController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
