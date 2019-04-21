@@ -36,9 +36,22 @@
                   <!-- Send Request button -->
                   <button class="btn btn-primary btn-md my-0 p" type="submit">Request Adoption</button>
 
-                  <!-- Edit button -->
-                  <a class="btn btn-info" role="button" href="/Animal/{{$animal->animal_id}}/edit">Edit Profile</a>
+                 
+                  
     
+                </form>
+
+                  <!-- delete post -->
+                <form action="/Animal/{{$animal->animal_id}}" method="POST" class="float-right">
+                    {{ method_field('DELETE') }}
+
+                <div class="form-group">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                </div>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                     <!-- Edit button -->
+                  <a class="btn btn-info" role="button" href="/Animal/{{$animal->animal_id}}/edit">Edit Profile</a>
                 </form>
     
               </div>
