@@ -14,18 +14,18 @@ class AnimalController extends Controller
      */
     public function index()
     {
-        $user = \App\User::first();
+        // $user = \App\User::first();
 
-        $animals = Animal::all();
-
-
-        $user->animals()->attach($animals);
-
-        dd($animals);
+        // $animals = Animal::first();
 
 
-        // $animals =  Animal::all(); //fetches all of the data in the Animal table.
-        // return view('animals.index')->with('animals', $animals); // http://astonanimal.k/Animal will link to this page
+        //$user->animals()->attach($animals);  https://www.youtube.com/watch?v=f7quw05phxs watch for tutorial on how to add data to pivot table progromatically
+
+        // dd($animals);
+
+
+        $animals =  Animal::all(); //fetches all of the data in the Animal table.
+        return view('animals.index')->with('animals', $animals); // http://astonanimal.k/Animal will link to this page
     }
 
     /**

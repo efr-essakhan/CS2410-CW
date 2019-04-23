@@ -15,6 +15,29 @@
                     @endif
                     <a class="btn btn-info" role="button" href="/Animal/create">View Animal Profile.</a>
                     <h3>Your Animal Adoption requests status.</h3>
+                    <table class="table table-striped table-dark">
+                        <tr>
+                            <th>Title</th>
+                            <th>Request ID</th> 
+                            <th>Request submitted at time:</th>
+                            <th>Status </th>
+                            <th>Actions </th>
+                        </tr>
+                        @if(count($animals)>0)
+                            @foreach($animals as $animal)
+                            <tr>
+                                    <th>{{$animal->nameTitle}}</th>
+                                    <th>{{$animal->id}} </th>
+                                    <th>  </th>
+                                    <th>  </th>
+                                    <th><a class="btn btn-info" role="button" href="/Animal/{{$animal->id}}/edit">Edit</a></th>
+                            </tr>
+                            @endforeach
+                        @else
+                            <p> You have not requested to adopt any animals. </p>
+
+                        @endif
+                    </table>
                 </div>
             </div>
         </div>

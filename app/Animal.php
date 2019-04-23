@@ -8,6 +8,6 @@ class Animal extends Model
 {
     public function users()
     {
-        return $this->belongsToMany('App\users');
+        return $this->belongsToMany('App\users')->withTimestamps();
     }
 }

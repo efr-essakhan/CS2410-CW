@@ -39,6 +39,6 @@ class User extends Authenticatable
 
     public function animals()
     {
-        return $this->belongsToMany('App\Animal');
+        return $this->belongsToMany('App\Animal')->withTimestamps();
     }
 }
