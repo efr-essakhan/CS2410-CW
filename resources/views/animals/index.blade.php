@@ -20,7 +20,7 @@
                                             <p class="card-text">This is a wider cardr</p> <!-- Description -->
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="btn-group">
-                                                    <a href="/Animal/{{$animal->animal_id}}" class="btn btn-success pull-right" role="button">View profile</a>
+                                                    <a href="/Animal/{{$animal->id}}" class="btn btn-success pull-right" role="button">View profile</a>
                                                 </div>
                                                 <small class="text-muted">9 mins</small>
                                             </div>

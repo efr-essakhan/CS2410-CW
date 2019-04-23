@@ -42,7 +42,7 @@
                 </form>
 
                   <!-- delete post -->
-                <form action="/Animal/{{$animal->animal_id}}" method="POST" class="float-right">
+                <form action="/Animal/{{$animal->id}}" method="POST" class="float-right">
                     {{ method_field('DELETE') }}
 
                 <div class="form-group">
@@ -51,7 +51,7 @@
                 </div>
                     <button type="submit" class="btn btn-danger">Delete</button>
                      <!-- Edit button -->
-                  <a class="btn btn-info" role="button" href="/Animal/{{$animal->animal_id}}/edit">Edit Profile</a>
+                  <a class="btn btn-info" role="button" href="/Animal/{{$animal->id}}/edit">Edit Profile</a>
                 </form>
     
               </div>

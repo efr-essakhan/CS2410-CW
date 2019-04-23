@@ -9,7 +9,7 @@
     <h1>Edit profile page</h1>
     <h5>Edit Animal profile with title: {{$animal->nameTitle}}</h5>
     
-    <form action="/Animal/{{ $animal->animal_id }}" method="POST">
+    <form action="/Animal/{{ $animal->id }}" method="POST">
          <!-- Text input-->
          @method('PUT')
          @csrf
