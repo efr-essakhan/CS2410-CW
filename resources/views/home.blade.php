@@ -5,39 +5,45 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
-
+                <div class="card-header">Welcome!  <a class="float-right" href="/Animal">Click here to view profiles of Animals up for adoption!</a></div>
+               
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
-                    <a class="btn btn-info" role="button" href="/Animal/create">View Animal Profile.</a>
-                    <h3>Your Animal Adoption requests status.</h3>
-                    <table class="table table-striped table-dark">
-                        <tr>
-                            <th>Title</th>
-                            <th>Request ID</th> 
-                            <th>Request submitted at time:</th>
-                            <th>Status </th>
-                            <th>Actions </th>
-                        </tr>
+                   
+                    
+                    @can('isNormal')
+                    <h4>Your adoption requests: </h4>
+                    <table class="table table-dark table-hover">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Request ID</th> 
+                                <th>Request submitted at time:</th>
+                                <th>Status </th>
+                                <th>Actions </th>
+                            </tr>
+                        </thead>
                         @if(count($animals)>0)
                             @foreach($animals as $animal)
+                        <tbody>
                             <tr>
-                                    <th>{{$animal->nameTitle}}</th>
-                                    <th>{{$animal->id}} </th>
-                                    <th>{{$animal->pivot->created_at}}</th>
-                                    <th>{{$animal->pivot->status}}</th>
-                                    <th><a class="btn btn-info" role="button" href="/Animal/{{$animal->id}}/edit">Edit</a></th>
+                                    <td>{{$animal->nameTitle}}</td>
+                                    <td>{{$animal->id}} </td>
+                                    <td>{{$animal->pivot->created_at}}</td>
+                                    <td>{{$animal->pivot->status}}</td>
+                                    <td><a class="btn btn-danger" role="button" href="/Animal/{{$animal->id}}/edit">Cancell request</a></td>
                             </tr>
+                        </tbody>
                             @endforeach
                         @else
-                            <p> You have not requested to adopt any animals. </p>
-
+                            <p> You have not requested to adopt any animals.</p>
                         @endif
                     </table>
+                    @endcan
                 </div>
             </div>
         </div>

@@ -18,21 +18,41 @@
                                     <a class="nav-link" href="/about">About</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link " href="/services">Services</a>
-                                </li>
-                                <li class="nav-item">
                                         <a class="nav-link " href="/Animal">Profiles</a>
                                 </li>
-                                <li class="nav-item">
-                                        <a class="nav-link " href="/Animal/create">Create Profile</a>
-                                </li>
+                            <!-- User specific drop down menu-->
+                             <!--Admin drop down menu:-->
+                             @can('isAdmin')
+                            <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                     Actions
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                      <a class="dropdown-item" href="#">Manage Requests</a>
+                                      <a class="dropdown-item" href="#">Create New Animal Profile</a>
+                                      <a class="dropdown-item" href="#">View User Data</a>
+                                    </div>
+                            </li>
+                            @endcan
+                            <!--Normal user drop down menu:-->
+                            @can('isNormal')
+                            <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                     Actions
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                      <a class="dropdown-item" href="/home">Manage Requests made</a>
+                                    </div>
+                            </li>
+                            @endcan
                         
 
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-
+                 
+                             <!-- Right Side Of Navbar drop down menu option-->
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
