@@ -33,9 +33,10 @@
     
                 <form class="d-flex justify-content-left">
 
-                  <!-- Send Request button -->
+                  <!--Request button: only for normal users-->
+                  @can('isNormal')
                   <button class="btn btn-primary btn-md my-0 p" type="submit">Request Adoption</button>
-
+                  @endcan
                  
                   
     
@@ -48,13 +49,18 @@
                 <div class="form-group">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
+
+                  <!--Admin controls-->
+                @can('isAdmin')
                 </div>
                     <button type="submit" class="btn btn-danger">Delete</button>
                      <!-- Edit button -->
                   <a class="btn btn-info" role="button" href="/Animal/{{$animal->id}}/edit">Edit Profile</a>
                 </form>
+                @endcan
     
               </div>
+             
               <!--Content-->
     
             </div>
