@@ -28,8 +28,8 @@
                             <tr>
                                     <th>{{$animal->nameTitle}}</th>
                                     <th>{{$animal->id}} </th>
-                                    <th>  </th>
-                                    <th>  </th>
+                                    <th>{{$animal->pivot->created_at}}</th>
+                                    <th>{{$animal->pivot->status}}</th>
                                     <th><a class="btn btn-info" role="button" href="/Animal/{{$animal->id}}/edit">Edit</a></th>
                             </tr>
                             @endforeach

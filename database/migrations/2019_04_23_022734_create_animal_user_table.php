@@ -17,7 +17,7 @@ class CreateAnimalUserTable extends Migration
             $table->bigIncrements('id');
             $table->integer('animal_id');
             $table->integer('user_id');
-            $table->tinyInteger('status')->default('1');
+            $table->string('status')->default('1');
             $table->timestamps();
         });
     }
