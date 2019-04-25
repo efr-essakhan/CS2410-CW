@@ -26,18 +26,21 @@
     
               <!--Content-->
               <div class="p-4">
-                  
-                <p class="lead font-weight-bold">Description</p>
-    
-                <p>{!!$animal->description!!}</p> <!--!! instead of {} to allow html parsing-->
-    
+                <ul class="list-group">
+                  <li class="list-group-item"><b>Animal profile title:</b> {!!$animal->nameTitle!!}</li>
+                  <li class="list-group-item"><b>Animal profile ID no:</b> {!!$animal->id!!}</li>
+                  <li class="list-group-item"><b>Description:</b>  <p>{!!$animal->description!!}</p></li>
+                </ul>
+
+            
                     <!--Request button: only for normal users-->
                 @can('isNormal')
+                <hr>
                 <form class="d-flex justify-content-left">
 
-              
+                <!--Attach this animal profile to this user in pivot table-->
                 <a class="btn btn-info" role="button" href="/animal_user_change_status/{{$animal->id}}/attach">Request Adoption</a>
-                  <!-- Change status-->
+                  
                   
     
                 </form>
@@ -46,6 +49,7 @@
                   <!-- delete post -->
                    <!--Admin controls-->
                 @can('isAdmin')
+                <hr>
                 <form action="/Animal/{{$animal->id}}" method="POST" class="float-right">
                     {{ method_field('DELETE') }}
 
@@ -70,22 +74,7 @@
     
           </div>
 
-          <!--Footer-->
-          <hr>
-    
-          <!--Grid row-->
-          <div class="row d-flex justify-content-center wow fadeIn">
-    
-            <!--Grid column-->
-            <div class="col-md-6 text-center">
-    
-              <h4 class="my-4 h4">Additional information</h4>
-    
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus suscipit modi sapiente illo soluta odit
-                voluptates,
-                quibusdam officia. Neque quibusdam quas a quis porro? Molestias illo neque eum in laborum.</p>
-    
-            </div>
+
 
     
       </main>

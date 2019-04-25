@@ -27,15 +27,39 @@ Route::get('/animal_user_change_status/{animal_id}/attach', function($id) {
     $user = User::find($user_id);
 
     
-    $user->animals()->sync($animal);
+    $user->animals()->syncWithoutDetaching($animal);
 
 
     //$animal->user->sync([$user_id]);
 
-    return view('animals.show')->with('success', 'Adoption request sent.')->with('animal', $animal);
+
+ return Redirect::action('AnimalController@show', array('animal' => $animal))->with('success', 'Success: Adoption request sent.');
 
 });
 
+   /**
+     * deAttaches the column from the pivot table (animal_user), aka. user requested to adopt an animal
+     *
+     * @param  int  $id : animal_id
+     * @return \Illuminate\Http\Response
+     */
+    Route::get('/animal_user_change_status/{animal_id}/detach', function($id) {
+
+        $animal = Animal::find($id);
+        
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+    
+        
+        $user->animals()->detach($animal);
+    
+    
+        //$animal->user->sync([$user_id]);
+    
+    return Redirect::action('HomeController@index')->with('success', 'Success: Request cancelled!');
+    // return redirect('/Animal')->with('success', 'Animal Profile Created');
+    //return Redirect::route('animals.show', array());
+    });
 
 
 
