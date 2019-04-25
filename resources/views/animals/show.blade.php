@@ -29,20 +29,23 @@
                   
                 <p class="lead font-weight-bold">Description</p>
     
-                <p>!!$animal->description!!</p> <!--!! instead of {} to allow html parsing-->
+                <p>{!!$animal->description!!}</p> <!--!! instead of {} to allow html parsing-->
     
+                    <!--Request button: only for normal users-->
+                @can('isNormal')
                 <form class="d-flex justify-content-left">
 
-                  <!--Request button: only for normal users-->
-                  @can('isNormal')
-                  <button class="btn btn-primary btn-md my-0 p" type="submit">Request Adoption</button>
-                  @endcan
-                 
+              
+                <a class="btn btn-info" role="button" href="/animal_user_change_status/{{$animal->id}}/attach">Request Adoption</a>
+                  <!-- Change status-->
                   
     
                 </form>
+                @endcan
 
                   <!-- delete post -->
+                   <!--Admin controls-->
+                @can('isAdmin')
                 <form action="/Animal/{{$animal->id}}" method="POST" class="float-right">
                     {{ method_field('DELETE') }}
 
@@ -50,8 +53,7 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 
-                  <!--Admin controls-->
-                @can('isAdmin')
+                 
                 </div>
                     <button type="submit" class="btn btn-danger">Delete</button>
                      <!-- Edit button -->

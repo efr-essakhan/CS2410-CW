@@ -21,7 +21,7 @@
 @endif
 
 <!-- have 3 things that we are checking: 
-    check errors array that is created when we do form validation (in @postcontrollerstore), if there is an error it is outputted to the user
+    check errors array that is created when we do form validation (in e.g. @postcontrollerstore), if there is an error it is outputted to the user
     check for session values, so session success and session error, and these are going to be flash messages that we create at any point
 -->
 

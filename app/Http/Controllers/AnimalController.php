@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Animal; //using eloquent, allows us to do database queries in other then SQL.
-
+use App\User;
 class AnimalController extends Controller
 {
     /**
@@ -148,6 +148,8 @@ class AnimalController extends Controller
     public function destroy($id)
     {
         $animal = Animal::find($id);
+
+        // delete the record from the animal table.
         $animal->delete();
         return redirect('/Animal')->with('success', 'Animal Profile Deleted');
     }

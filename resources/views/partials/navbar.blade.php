@@ -18,7 +18,7 @@
                                     <a class="nav-link" href="/about">About</a>
                                 </li>
                                 <li class="nav-item">
-                                        <a class="nav-link " href="/Animal">Profiles</a>
+                                        <a class="nav-link " href="/Animal/create">Profiles</a>
                                 </li>
                             <!-- User specific drop down menu-->
                              <!--Admin drop down menu:-->
@@ -29,7 +29,7 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                       <a class="dropdown-item" href="#">Manage Requests</a>
-                                      <a class="dropdown-item" href="#">Create New Animal Profile</a>
+                                      <a class="dropdown-item" href="/Animal/create">Create New Animal Profile</a>
                                       <a class="dropdown-item" href="#">View User Data</a>
                                     </div>
                             </li>
