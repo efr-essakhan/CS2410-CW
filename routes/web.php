@@ -57,8 +57,7 @@ Route::get('/animal_user_change_status/{animal_id}/attach', function($id) {
         //$animal->user->sync([$user_id]);
     
     return Redirect::action('HomeController@index')->with('success', 'Success: Request cancelled!');
-    // return redirect('/Animal')->with('success', 'Animal Profile Created');
-    //return Redirect::route('animals.show', array());
+
     });
 
 

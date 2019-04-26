@@ -37,10 +37,41 @@
                 @can('isNormal')
                 <hr>
                 <form class="d-flex justify-content-left">
+                
+                  @php
+                  //Logic to check the 'status'  comulmn of the pivot table which is used to determine what buttons and data to display on the page for the user.
+                    $user_id = auth()->user()->id;
+                
+                    $user = App\User::find($user_id);
+                    $user_animals = $user->animals;
+            
+                    $status = ''; //holds the 'status' column value of the pivot table
+                    if (count($user_animals)>0){
+                      foreach ($user_animals as $user_animal){
+                        if($animal->id == $user_animal->id){
+                          $status= $user_animal->pivot->status;
+                        }
+                      }
+                    }
+                    
+                    
+                  @endphp
+                  @if(($status == 'Waiting' || $status == 'Accepted' || $status == 'Rejected'))
+                    @if($status == 'Waiting')
+                    
+                    <p>You have sent a request to adopt this animal. Your request is being reviewed. Keep an eye on your <a href="/home">'Manage Requests Page'</a> to see whether your request has been accepted or rejected. </p>
 
-                <!--Attach this animal profile to this user in pivot table-->
-                <a class="btn btn-info" role="button" href="/animal_user_change_status/{{$animal->id}}/attach">Request Adoption</a>
-                  
+                    @endif
+                    @if($status == 'Accepted')
+                    <p>Your request of adoption for this animal has been accepted!</p>
+                    @endif
+                    @if($status == 'Rejected')
+                    <p>Your request of adoption for this animal has been Rejected.</p>
+                    @endif
+                  @else
+                    <!--Attach this animal profile to this user in pivot table-->
+                   <a class="btn btn-info" role="button" href="/animal_user_change_status/{{$animal->id}}/attach">Request Adoption</a>
+                  @endif
                   
     
                 </form>

@@ -18,7 +18,6 @@
                     @can('isNormal')
                     <h4>Your adoption requests: </h4>
                     @if(count($animals)>0)
-                    @foreach($animals as $animal)
                     <table class="table table-dark table-hover">
                         <thead>
                             <tr>
@@ -29,13 +28,14 @@
                                 <th>Actions </th>
                             </tr>
                         </thead>
+                        @foreach($animals as $animal)
                         <tbody>
                             <tr>
                                     <td>{{$animal->nameTitle}}</td>
                                     <td>{{$animal->id}} </td>
                                     <td>{{$animal->pivot->created_at}}</td>
                                     <td>{{$animal->pivot->status}}</td>
-                                    <td><a class="btn btn-danger" role="button" href="/animal_user_change_status/{animal_id}/detach">Cancell request</a></td>
+                                    <td><a class="btn btn-danger" role="button" href="/animal_user_change_status/{{$animal->id}}/detach">Cancell request</a></td>
                             </tr>
                         </tbody>
                             @endforeach
