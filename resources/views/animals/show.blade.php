@@ -45,7 +45,7 @@
                     $user = App\User::find($user_id);
                     $user_animals = $user->animals;
             
-                    $status = ''; //holds the 'status' column value of the pivot table
+                    $status = ''; //will hold the 'status' column value of the pivot table
                     if (count($user_animals)>0){
                       foreach ($user_animals as $user_animal){
                         if($animal->id == $user_animal->id){

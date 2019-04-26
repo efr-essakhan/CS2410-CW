@@ -25,9 +25,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
+        //Data for Normal users
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
+
+        //Data for Admin users
+        
         return view('home')->with('animals', $user->animals);
     }
 }
