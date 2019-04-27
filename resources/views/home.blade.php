@@ -22,7 +22,7 @@
                     <table class="table table-dark table-hover">
                         <thead>
                             <tr>
-                                <th>Profile Title</th>
+                                <th>Animal Profile Title</th>
                                 <th>Animal ID</th> 
                                 <th>Request submitted at time:</th>
                                 <th>Status </th>
@@ -43,14 +43,15 @@
                                     <td>
                                             @if($status == 'Waiting')
                     
-                                                <a class="btn btn-danger" role="button" href="/animal_user_change_status/{{$animal->id}}/detach">Cancell request</a>
+                                                <a class="btn btn-danger" role="button" href="/animal_user_change_status/{{$animal->id}}/{{$animal->pivot->user_id}}/detach">Cancell request</a>
+                                                
                         
                                             @endif
                                             @if($status == 'Accepted')
-                                            <p>Your request of adoption for this animal has been accepted! <br> no actions</p>
+                                            <p>no actions: <br>Your request of adoption for this animal has been <b>accepted</b>!</p>
                                             @endif
                                             @if($status == 'Rejected')
-                                            <p>Your request of adoption for this animal has been Rejected. <br> no actions</p>
+                                            <p>no actions: <br>Your request of adoption for this animal has been <b>Rejected.</b></p>
                                             @endif
 
                                     </td>
@@ -75,26 +76,7 @@
                                         </tr>
                                 </thead>
                             @php
-                                //$status = $animal->pivot->status;
                                 $users = App\User::all();
-                                // if (count($users)>0){
-                                //     foreach ($users as $user){
-                                //         $user_animals = $user->animals;
-                                        // if (count($user_animals)>0){ 
-                                        //     foreach ($user_animals as $user_animal){ //
-                                        //         if($animal->id == $user_animal->id){
-                                        //             $status= $user_animal->pivot->status;
-                                        //         }
-                                        //     }
-                                        // }
-                                        // if (count($user_animals)>0){
-                                        //     foreach ($user_animals as $user_animal){
-                                        //         dd($user_animal->pivot->status);
-                                        //     }
-                                            
-                                        // }
-                                    
-                                
                             @endphp
                             @if(count($users)>0)
                                  @foreach($users as $user)
@@ -112,22 +94,22 @@
 
                                         <tbody>
                                             <tr>
-                                                    <td>{{$user_animal->nameTitle}}</td>
-                                                    <td>{{$user_animal->id}}</td>
+                                                    <td>{{$user->id}}</td>
+                                                    <td>{{$user->email}}</td>
                                                     <td>{{$user_animal->pivot->created_at}}</td>
-                                                    <td>{{$status}}</td>
+                                                    <td>{{$user_animal->id}}</td>
                                                     <td>
                                                             @if($status == 'Waiting')
                                     
-                                                                <a class="btn btn-danger" role="button" href="/animal_user_change_status/{{$user_animal->id}}/detach">Reject</a>
-                                                                <a class="btn btn-success" role="button" href="/animal_user_change_status/{{$user_animal->id}}/detach">Accept</a>
+                                                                <a class="btn btn-danger" role="button" href="/animal_user_change_status/{{$user_animal->id}}/{{$user->id}}/Reject">Reject</a>
+                                                                <a class="btn btn-success" role="button" href="/animal_user_change_status/{{$user_animal->id}}/{{$user->id}}/Accept">Accept</a>
                                         
                                                             @endif
                                                             @if($status == 'Accepted')
-                                                            <p>The user has been accepted. <br> no actions</p>
+                                                            <p>no actions: <br>The user request has been <b>accepted.</b></p>
                                                             @endif
                                                             @if($status == 'Rejected')
-                                                            <p>The user has been rejected. <br> no actions</p>
+                                                            <p>no actions: <br>The user request has been <b>rejected.</b></p>
                                                             @endif
                 
                                                     </td>

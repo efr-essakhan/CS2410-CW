@@ -11,7 +11,7 @@ use App\User;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'AnimalController@index'); // just incase anything redricts to '/'
+
 
     /**
      * Attaches a new column to the pivot table (animal_user), aka. user requested to adopt an animal
@@ -33,7 +33,7 @@ Route::get('/animal_user_change_status/{animal_id}/attach', function($id) {
     //$animal->user->sync([$user_id]);
 
 
- return Redirect::action('AnimalController@show', array('animal' => $animal))->with('success', 'Success: Adoption request sent.');
+ return Redirect::action('AnimalController@show', array('animal' => $animal))->with('success', 'SUCCESS: Adoption request for animal with ID:' .  $id . ' has been sent.');
 
 });
 
@@ -43,25 +43,77 @@ Route::get('/animal_user_change_status/{animal_id}/attach', function($id) {
      * @param  int  $id : animal_id
      * @return \Illuminate\Http\Response
      */
-    Route::get('/animal_user_change_status/{animal_id}/detach', function($id) {
+    Route::get('/animal_user_change_status/{animal_id}/{user_id}/detach', function($id, $user_id) {
 
         $animal = Animal::find($id);
-        
-        $user_id = auth()->user()->id;
+
         $user = User::find($user_id);
     
-        
         $user->animals()->detach($animal);
     
     
-        //$animal->user->sync([$user_id]);
+    return Redirect::action('HomeController@index')->with('success', 'SUCCESS: Adoption request for animal with ID:' .  $id . ' has been cancelled.');
+
+    });
+
+   /**
+     * CHANGES the column from the pivot table (animal_user) status to accepted
+     *
+     * @param  int  $id : animal_id
+     * @return \Illuminate\Http\Response
+     */
+    Route::get('/animal_user_change_status/{animal_id}/{user_id}/Accept', function($animal_id, $user_id) {
+
+        
+        $users = User::all();
+
+        //Firstly rejecting (setting status column of pivot table to 'rejected') any other requests for this animal by all users
+        foreach($users as $user)
+        {
+            $user_animals = $user->animals;
+
+            if((count($user_animals)>0)){
+                foreach($user_animals as $user_animal)
+                {
+                    if($user_animal->id == $animal_id)
+                    {
+                        $user->animals()->updateExistingPivot($user_animal->id, array('status' => 'Rejected'));
+                    }
+                }
+            }
+          
+        }
+
+        //Then turning the specific column value on the user that gets this animal to Accepted
+        $user = User::find($user_id);
+        $user->animals()->updateExistingPivot($animal_id, array('status' => 'Accepted'));
+
+        
+
+        return Redirect::action('HomeController@index')->with('success', 'SUCCESS: Adoption request with animal ID:' .  $animal_id . ' and user ID:' . $user_id . ' is accepted.');
+
+    });
+
     
-    return Redirect::action('HomeController@index')->with('success', 'Success: Request cancelled!');
+   /**
+     * CHANGES the column from the pivot table (animal_user) status to rejected
+     *
+     * @param  int  $id : animal_id
+     * @return \Illuminate\Http\Response
+     */
+    Route::get('/animal_user_change_status/{animal_id}/{user_id}/Reject', function($animal_id, $user_id) {
+
+        $user = User::find($user_id);
+
+        $user->animals()->updateExistingPivot($animal_id, array('status' => 'Rejected'));
+
+        return Redirect::action('HomeController@index')->with('success', 'SUCCESS: Adoption request with animal ID:' .  $animal_id . ' and user ID:' . $user_id . ' is rejected.');
 
     });
 
 
 
+Route::get('/', 'AnimalController@index'); // just incase anything redricts to '/'
 Route::resource('Animal', 'AnimalController');
 Route::resource('animal_users', 'animal_usersController');
 Auth::routes();
