@@ -30,7 +30,9 @@ class HomeController extends Controller
         $user = User::find($user_id);
 
         //Data for Admin users
-        
-        return view('home')->with('animals', $user->animals);
+
+        return view('user.managerequest')->with('animals', $user->animals);
     }
+
+    
 }

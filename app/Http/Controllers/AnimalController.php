@@ -14,17 +14,10 @@ class AnimalController extends Controller
      */
     public function index()
     {
-        // $user = \App\User::first();
-
-        // $animals = Animal::first();
 
 
-        //$user->animals()->attach($animals);  https://www.youtube.com/watch?v=f7quw05phxs watch for tutorial on how to add data to pivot table progromatically
-
-        // dd($animals);
-
-
-        $animals =  Animal::all(); //fetches all of the data in the Animal table.
+        //return $animals =  Animal::all(); //fetches all of the data in the Animal table.
+        $animals= Animal::where('available', 'Yes')->paginate(5);
         return view('animals.index')->with('animals', $animals); // http://astonanimal.k/Animal will link to this page
     }
 
@@ -51,7 +44,6 @@ class AnimalController extends Controller
             'title' => 'required',
             'body' => 'required',
             'animaltype' => 'required',
-            'radios'  => 'required',
             'dob-day' => 'required',
             'dob-month' => 'required',
             'dob-year' => 'required'
@@ -63,7 +55,6 @@ class AnimalController extends Controller
         $animal->nameTitle = $request->input('title');
         $animal->description = $request->input('body');
         $animal->animaltype = $request->input('animaltype');
-        $animal->available = $request->input('radios');
 
         //Entering DOB into DB by concatinating drop down values.
         $dob = $request->input('dob-year') . '-' . $request->input('dob-month') . '-' . $request->input('dob-day');
@@ -117,7 +108,6 @@ class AnimalController extends Controller
                 'title' => 'required',
                 'body' => 'required',
                 'animaltype' => 'required',
-                'radios'  => 'required',
                 'dob-day' => 'required',
                 'dob-month' => 'required',
                 'dob-year' => 'required'
@@ -129,7 +119,7 @@ class AnimalController extends Controller
             $animal->nameTitle = $request->input('title');
             $animal->description = $request->input('body');
             $animal->animaltype = $request->input('animaltype');
-            $animal->available = $request->input('radios');
+
             //Entering DOB into DB by concatinating drop down values.
             $dob = $request->input('dob-year') . '-' . $request->input('dob-month') . '-' . $request->input('dob-day');
             $animal->dob = $dob;

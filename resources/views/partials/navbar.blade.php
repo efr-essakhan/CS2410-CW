@@ -28,9 +28,10 @@
                                      Actions
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                      <a class="dropdown-item" href="/home">Manage Requests</a>
+                                      <a class="dropdown-item" href="/home">Respond to Requests</a>
                                       <a class="dropdown-item" href="/Animal/create">Create New Animal Profile</a>
-                                      <a class="dropdown-item" href="#">View User Data</a>
+                                      <a class="dropdown-item" href="/viewuserdata">View User Data</a>
+                                      <a class="dropdown-item" href="/viewanimalsdata">View Animal Data</a>
                                     </div>
                             </li>
                             @endcan

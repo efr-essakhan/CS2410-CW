@@ -64,10 +64,11 @@ Route::get('/animal_user_change_status/{animal_id}/attach', function($id) {
      */
     Route::get('/animal_user_change_status/{animal_id}/{user_id}/Accept', function($animal_id, $user_id) {
 
+        Animal::where('id', $animal_id)->update(array('available' => 'No'));
         
-        $users = User::all();
 
-        //Firstly rejecting (setting status column of pivot table to 'rejected') any other requests for this animal by all users
+        //Firstly rejecting any other requests for this animal by all users (setting status column of pivot table to 'rejected') 
+        $users = User::all();
         foreach($users as $user)
         {
             $user_animals = $user->animals;
@@ -88,6 +89,7 @@ Route::get('/animal_user_change_status/{animal_id}/attach', function($id) {
         $user = User::find($user_id);
         $user->animals()->updateExistingPivot($animal_id, array('status' => 'Accepted'));
 
+        //Setting the prod
         
 
         return Redirect::action('HomeController@index')->with('success', 'SUCCESS: Adoption request with animal ID:' .  $animal_id . ' and user ID:' . $user_id . ' is accepted.');
@@ -111,6 +113,39 @@ Route::get('/animal_user_change_status/{animal_id}/attach', function($id) {
 
     });
 
+    ////////////////////
+       /**
+     * CHANGES the column from the pivot table (animal_user) status to rejected
+     *
+     * @param  int  $id : animal_id
+     * @return \Illuminate\Http\Response
+     */
+    Route::get('/viewuserdata', function() {
+
+        $users = User::all();
+
+       // $user->animals()->updateExistingPivot($animal_id, array('status' => 'Rejected'));
+
+        return view('user.userdata')->with('users', $users);;
+
+    });
+
+        ////////////////////
+       /**
+     * CHANGES the column from the pivot table (animal_user) status to rejected
+     *
+     * @param  int  $id : animal_id
+     * @return \Illuminate\Http\Response
+     */
+    Route::get('/viewanimalsdata', function() {
+
+        $animals = Animal::all();
+
+       // $user->animals()->updateExistingPivot($animal_id, array('status' => 'Rejected'));
+
+        return view('user.animaldata')->with('animals', $animals);;
+
+    });
 
 
 Route::get('/', 'AnimalController@index'); // just incase anything redricts to '/'
@@ -119,3 +154,4 @@ Route::resource('animal_users', 'animal_usersController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+

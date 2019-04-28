@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Welcome!  <a class="float-right" href="/Animal">Click here to view profiles of Animals up for adoption!</a></div>
+                <div class="card-header">Welcome! <a class="float-right" href="/Animal">Click here to view profiles of Animals up for adoption!</a></div>
                
                 <div class="card-body">
                     @if (session('status'))
@@ -64,7 +64,7 @@
                     </table>
                     @endcan
                     @can('isAdmin')
-                        <h4><b>Manage adoption requests from users: </b> </h4>
+                        <h4><b>Respond to adoption requests from users: </b> </h4>
                         <table class="table table-dark table-hover">
                                 <thead>
                                         <tr>
@@ -92,38 +92,37 @@
                                             //dd($status);
                                         @endphp
 
-                                        <tbody>
-                                            <tr>
-                                                    <td>{{$user->id}}</td>
-                                                    <td>{{$user->email}}</td>
-                                                    <td>{{$user_animal->pivot->created_at}}</td>
-                                                    <td>{{$user_animal->id}}</td>
-                                                    <td>
-                                                            @if($status == 'Waiting')
-                                    
-                                                                <a class="btn btn-danger" role="button" href="/animal_user_change_status/{{$user_animal->id}}/{{$user->id}}/Reject">Reject</a>
-                                                                <a class="btn btn-success" role="button" href="/animal_user_change_status/{{$user_animal->id}}/{{$user->id}}/Accept">Accept</a>
+                                        @if($status == 'Waiting')
+                                            
+                                            <tbody>
+                                                <tr>
+                                                        <td>{{$user->id}}</td>
+                                                        <td>{{$user->email}}</td>
+                                                        <td>{{$user_animal->pivot->created_at}}</td>
+                                                        <td>{{$user_animal->id}}</td>
+                                                        <td>
+                                                                @if($status == 'Waiting')
                                         
-                                                            @endif
-                                                            @if($status == 'Accepted')
-                                                            <p>no actions: <br>The user request has been <b>accepted.</b></p>
-                                                            @endif
-                                                            @if($status == 'Rejected')
-                                                            <p>no actions: <br>The user request has been <b>rejected.</b></p>
-                                                            @endif
-                
-                                                    </td>
-                                            </tr>
-                                        </tbody>
-
+                                                                    <a class="btn btn-danger" role="button" href="/animal_user_change_status/{{$user_animal->id}}/{{$user->id}}/Reject">Reject</a>
+                                                                    <a class="btn btn-success" role="button" href="/animal_user_change_status/{{$user_animal->id}}/{{$user->id}}/Accept">Accept</a>
+                                            
+                                                                @endif
+                    
+                                                        </td>
+                                                </tr>
+                                            </tbody>
+                                        @endif
                                         @endforeach
                                    
                                     @endif
                                 @endforeach
+                               
                             @else
                                 <p> You have not requested to adopt any animals yet.</p>
                             @endif
+                            
                         </table>
+                        <p>If the above table is empty it means that there are no Requests to respond to.</p>
                     @endcan
                 </div>
             </div>

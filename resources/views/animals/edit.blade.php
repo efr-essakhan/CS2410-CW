@@ -37,26 +37,7 @@
                     <option value="Reptile">Reptile</option>
                 </select>
              </div>
-
-               <!-- Multiple Radios -->
-            <div class="form-group">
-                    <label for="body">Available for adoption?</label>
-                    <div class="form-group">
-                    <div class="radio">
-                      <label for="radios-0">
-                        <input type="radio" name="radios" id="radios-0" value="1" checked="checked">
-                        Yes
-                      </label>
-                      </div>
-                    <div class="radio">
-                      <label for="radios-1">
-                        <input type="radio" name="radios" id="radios-1" value="0">
-                        No
-                      </label>
-                      </div>
-                    </div>
-             </div>
-            
+             
              <!-- date of birth picker -->
              @include('partials/dob')
 

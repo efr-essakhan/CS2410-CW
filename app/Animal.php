@@ -8,6 +8,7 @@ class Animal extends Model
 {
     public function users()
     {
-        return $this->belongsToMany('App\users')->withTimestamps()->withPivot('status');
+        return $this->belongsToMany('App\User')->withTimestamps()->withPivot('status');
+
     }
 }
