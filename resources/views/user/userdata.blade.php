@@ -23,7 +23,7 @@
                                         $user_animals = $user->animals;
                                     @endphp
                                     <table  class="table table-hover table-dark">
-                                            <div style="background-color:#ffffa0" class="card" style="width: 18rem;">
+                                            <div style="color:blue" class="card" style="width: 18rem;">
                                                     <ul class="list-group list-group-flush">
                                                       <li class="list-group-item"><b> User ID: </b> {{$user->id}} <br> <b> email:</b> {{$user->email}}</a></li>
                                                     </ul>

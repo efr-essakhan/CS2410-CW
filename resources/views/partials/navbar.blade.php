@@ -11,14 +11,8 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                            <li class="nav-item active">
-                                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                                </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/about">About</a>
-                                </li>
-                                <li class="nav-item">
-                                        <a class="nav-link " href="/Animal/create">Profiles</a>
+                                        <a class="nav-link " href="/">Profiles</a>
                                 </li>
                             <!-- User specific drop down menu-->
                              <!--Admin drop down menu:-->

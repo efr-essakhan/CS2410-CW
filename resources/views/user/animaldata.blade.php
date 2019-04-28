@@ -35,6 +35,7 @@
                                                         <th>Users ID</th>
                                                         <th>Users Email</th>
                                                         <th>Request Status</th>
+                                                        
                                                     </tr>
                                             </thead>
                                     @if(count($animal_users)>0)
@@ -61,6 +62,7 @@
                                                             @endif
                 
                                                     </td>
+                                                    
                                             </tr>
                                         </tbody>
 
