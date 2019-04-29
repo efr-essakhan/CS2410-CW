@@ -70,11 +70,12 @@ class AnimalController extends Controller
             'dob-day' => 'required',
             'dob-month' => 'required',
             'dob-year' => 'required',
-            'cover_image' => 'image|nullable|max:1999'
+            'cover_image' => 'image|nullable|max:1999',
+            'second_image' => 'image|nullable|max:1999'
 
         ]);
 
-        //handle file upload
+        //handle file upload cover_image
         if($request->hasFile('cover_image')){
             //get file name with extension
             $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
@@ -93,14 +94,36 @@ class AnimalController extends Controller
         } else {
             $fileNameToStore = 'noimage.jpg';
         }
+        $animal = new Animal;
+        $animal->cover_image = $fileNameToStore;
+
+         //handle file upload secondary image
+         if($request->hasFile('second_image')){
+            //get file name with extension
+            $filenameWithExt = $request->file('second_image')->getClientOriginalName();
+            //get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+
+            //get just extension
+            $extension = $request->file('second_image')->getClientOriginalExtension();
+
+            // filename to store
+            $fileNameToStore = $filename . '_' .time(). '.' . $extension; //unique filename
+
+            //upload image
+            $path = $request->file('second_image')->storeAs('public/cover_images', $fileNameToStore);
+
+        } else {
+            $fileNameToStore = 'noimage.jpg';
+        }
            
         //using tinker to store the animal data into the DB
-        $animal = new Animal;
+        
         $animal->nameTitle = $request->input('title');
         $animal->description = $request->input('body');
         $animal->animaltype = $request->input('animaltype');
         $animal->gender = $request->input('radios');
-        $animal->cover_image = $fileNameToStore;
+        $animal->second_image = $fileNameToStore;
 
         //Entering DOB into DB by concatinating drop down values.
         $dob = $request->input('dob-year') . '-' . $request->input('dob-month') . '-' . $request->input('dob-day');
@@ -159,9 +182,12 @@ class AnimalController extends Controller
                 'radios'  => 'required',
                 'dob-year' => 'required',
                 'dob-year' => 'required',
-                'cover_image' => 'image|nullable|max:1999'
+                'cover_image' => 'image|nullable|max:1999',
+                'second_image' => 'image|nullable|max:1999'
     
             ]);
+
+            $animal = Animal::find($id);
               //handle file upload
         if($request->hasFile('cover_image')){
             //get file name with extension
@@ -178,18 +204,45 @@ class AnimalController extends Controller
             //upload image
             $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
 
+            $animal->cover_image = $fileNameToStore;
+         
+
         }
+           //if upload a new image
+        //    if($request->hasFile('cover_image')){
+        //    
+        // }
+       
+           
+        if($request->hasFile('second_image')){
+            //get file name with extension
+            $filenameWithExt = $request->file('second_image')->getClientOriginalName();
+            //get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+
+            //get just extension
+            $extension = $request->file('second_image')->getClientOriginalExtension();
+
+            // filename to store
+            $fileNameToStore = $filename . '_' .time(). '.' . $extension; //unique filename
+
+            //upload image
+            $path = $request->file('second_image')->storeAs('public/cover_images', $fileNameToStore);
+
+            $animal->second_image = $fileNameToStore;
+
+        }
+        // if($request->hasFile('second_image')){
+        //     $animal->second_image = $fileNameToStore;
+        // }
         
             //Find animal data in DB and alter.
-            $animal = Animal::find($id);
+            
             $animal->nameTitle = $request->input('title');
             $animal->description = $request->input('body');
             $animal->animaltype = $request->input('animaltype');
             $animal->gender = $request->input('radios');
-            //if upload a new image
-            if($request->hasFile('cover_image')){
-                $animal->cover_image = $fileNameToStore;
-            }
+         
 
             //Entering DOB into DB by concatinating drop down values.
             $dob = $request->input('dob-year') . '-' . $request->input('dob-month') . '-' . $request->input('dob-day');
@@ -214,6 +267,10 @@ class AnimalController extends Controller
         if($animal->cover_image != 'noimage.jpg'){
             // Delete Image
             Storage::delete('public/cover_images/'. $animal->cover_image);
+        }
+        if($animal->cover_image != 'noimage.jpg'){
+            // Delete Image
+            Storage::delete('public/cover_images/'. $animal->second_image);
         }
         // delete the record from the animal table.
         $animal->delete();

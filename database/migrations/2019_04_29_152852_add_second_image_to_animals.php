@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddCoverImageToAnimals extends Migration
+class AddSecondImageToAnimals extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,7 @@ class AddCoverImageToAnimals extends Migration
     {
         Schema::table('animals', function (Blueprint $table) {
            
-            $table->string('cover_image')->default('noimage.jpg');
+            $table->string('second_image')->default('noimage.jpg');
             
         });
     }
@@ -29,7 +29,7 @@ class AddCoverImageToAnimals extends Migration
     {
         Schema::table('animals', function (Blueprint $table) {
            
-            $table->dropColumn('cover_image');
+            $table->dropColumn('second_image');
             
         });;
     }

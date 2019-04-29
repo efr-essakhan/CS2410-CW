@@ -1,7 +1,7 @@
 <div class="form-group">
-        <label for="dob-day" class="control-label">Date of birth</label>
-        <div class="controls">
-          <select name="dob-day" id="dob-day">
+    <label for="dob-day" class="control-label">Date of birth</label>
+    <div class="controls">
+        <select name="dob-day" id="dob-day">
             <option value="">Day</option>
             <option value="">---</option>
             <option value="01">01</option>
@@ -35,8 +35,8 @@
             <option value="29">29</option>
             <option value="30">30</option>
             <option value="31">31</option>
-          </select>
-          <select name="dob-month" id="dob-month">
+        </select>
+        <select name="dob-month" id="dob-month">
             <option value="">Month</option>
             <option value="">-----</option>
             <option value="01">January</option>
@@ -51,8 +51,8 @@
             <option value="10">October</option>
             <option value="11">November</option>
             <option value="12">December</option>
-          </select>
-          <select name="dob-year" id="dob-year">
+        </select>
+        <select name="dob-year" id="dob-year">
             <option value="">Year</option>
             <option value="">----</option>
             <option value="2019">2019</option>
@@ -174,6 +174,6 @@
             <option value="1903">1903</option>
             <option value="1901">1901</option>
             <option value="1900">1900</option>
-          </select>
-        </div>
-      </div>
+        </select>
+    </div>
+</div>
