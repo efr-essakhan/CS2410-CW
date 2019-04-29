@@ -14,36 +14,36 @@
     
             <!--Picture-->
             
-            <div class="col-md-6 mb-4">
+            <div class="col-md-6 mb-4 row justify-content-center">
     
-                <img  style="width: auto; border:1px solid black;" src="/storage/cover_images/{{$animal->cover_image}}">
+                <img  style="width:75%; border:1px solid black;" src="/storage/cover_images/{{$animal->cover_image}}">
     
             </div>
             <!--Grid column-->
     
             <!--Grid column-->
             <div class="col-md-6 mb-4">
+                @php    
+                //calculate DOB
+                $tz  = new DateTimeZone('Europe/Brussels');
+                $age = DateTime::createFromFormat('Y-m-d', $animal->dob, $tz)
+                ->diff(new DateTime('now', $tz))
+                ->y;
+
+                          //workout gender
+                          $gender = '-';
+                      if($animal->gender == 1){
+                          $gender = 'Male';
+                      }
+                      else{
+                          $gender = 'female';
+                      }
+                @endphp
     
               <!--Content-->
               <div class="p-4">
                 <ul class="list-group">
                   <li class="list-group-item"><b>Animal profile title:</b> {!!$animal->nameTitle!!}</li>
-                  @php    
-                  //calculate DOB
-                  $tz  = new DateTimeZone('Europe/Brussels');
-                  $age = DateTime::createFromFormat('Y-m-d', $animal->dob, $tz)
-                  ->diff(new DateTime('now', $tz))
-                  ->y;
-
-                            //workout gender
-                            $gender = '-';
-                        if($animal->gender == 1){
-                            $gender = 'Male';
-                        }
-                        else{
-                            $gender = 'female';
-                        }
-                  @endphp
                   <li class="list-group-item"><b>Age: </b> {{$age}} (dob: {{ $animal->dob}})</li>
                   <li class="list-group-item"><b>Gender: </b> {{$gender}}</li>
                   <li class="list-group-item"><b>Description:</b>  <p>{!!$animal->description!!}</p></li>

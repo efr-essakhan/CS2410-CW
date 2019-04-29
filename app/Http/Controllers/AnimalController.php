@@ -15,11 +15,32 @@ class AnimalController extends Controller
      */
     public function index()
     {
+        $filter = '';
+        //filter
+        if(request()->has('gender')){
+            $animals= Animal::where('available', 'Yes')
+            ->where('gender', request('gender'))->paginate(5)->appends('gender', request('gender'));
 
+            if(request('gender') == 1){
+                $filter = 'Male';
+            }
+            else{
+                $filter = 'Female';}
+            
+        }elseif(request()->has('animaltype'))
+        {
+            $animals= Animal::where('available', 'Yes')
+            ->where('animaltype', request('animaltype'))->paginate(5)->appends('animaltype', request('animaltype'));
+            $filter = request('animaltype');
+        }
+        else {
+            $animals= Animal::where('available', 'Yes')->paginate(5);
+            
+        }
 
-        //return $animals =  Animal::all(); //fetches all of the data in the Animal table.
-        $animals= Animal::where('available', 'Yes')->paginate(5);
-        return view('animals.index')->with('animals', $animals); // http://astonanimal.k/Animal will link to this page
+        
+     
+        return view('animals.index')->with('animals', $animals)->with('filter', $filter); // http://astonanimal.k/Animal will link to this page
     }
 
     /**
