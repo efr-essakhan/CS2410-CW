@@ -27,7 +27,8 @@
                                     <table class="table table-dark table-hover">
                                             <div class="card" style="width: 18rem;">
                                                     <ul class="list-group list-group-flush">
-                                                      <li class="list-group-item"><a href="/Animal/{{$animal->id}}"><b> Animal ID: {{$animal->id}}</b></a></li>
+                                                      <li class="list-group-item"><a href="/Animal/{{$animal->id}}"><b><img style="width:20%" src="/storage/cover_images/{{$animal->cover_image}}"> Animal ID: {{$animal->id}}</b> </a></li>
+                                                      
                                                     </ul>
                                                   </div>
                                             <thead>
@@ -68,10 +69,9 @@
 
                                         @endforeach
                                         @else
-                                        <td>{{$user->id}}</td>
-                                        <td>{{$user->email}}</td>
+                                        <td>{{$animal_user->id}}</td>
+                                         <td>{{$animal_user->email}}</td>
                                         <td><p>No animals owned</p></td>
-                                        <td><p>-</p></td>
                                     @endif
                                 @endforeach
                             @else

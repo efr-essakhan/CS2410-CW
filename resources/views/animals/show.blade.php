@@ -16,7 +16,7 @@
             
             <div class="col-md-6 mb-4">
     
-              <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/14.jpg" class="img-fluid" alt="">
+                <img  style="width: auto; border:1px solid black;" src="/storage/cover_images/{{$animal->cover_image}}">
     
             </div>
             <!--Grid column-->
@@ -28,8 +28,27 @@
               <div class="p-4">
                 <ul class="list-group">
                   <li class="list-group-item"><b>Animal profile title:</b> {!!$animal->nameTitle!!}</li>
-                  <li class="list-group-item"><b>Animal profile ID no:</b> {!!$animal->id!!}</li>
+                  @php    
+                  //calculate DOB
+                  $tz  = new DateTimeZone('Europe/Brussels');
+                  $age = DateTime::createFromFormat('Y-m-d', $animal->dob, $tz)
+                  ->diff(new DateTime('now', $tz))
+                  ->y;
+
+                            //workout gender
+                            $gender = '-';
+                        if($animal->gender == 1){
+                            $gender = 'Male';
+                        }
+                        else{
+                            $gender = 'female';
+                        }
+                  @endphp
+                  <li class="list-group-item"><b>Age: </b> {{$age}} (dob: {{ $animal->dob}})</li>
+                  <li class="list-group-item"><b>Gender: </b> {{$gender}}</li>
                   <li class="list-group-item"><b>Description:</b>  <p>{!!$animal->description!!}</p></li>
+                  <li class="list-group-item"><small>Profile created at: {{$animal->created_at}}, <br> Profile last updated at: {{$animal->updated_at}} <br>  ID: {!!$animal->id!!} <br> available for adoption: {!!$animal->available!!}</small></li>
+                  
                 </ul>
 
             

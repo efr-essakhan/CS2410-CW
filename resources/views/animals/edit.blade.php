@@ -9,7 +9,7 @@
     <h1>Edit profile page</h1>
     <h5>Edit Animal profile with title: {{$animal->nameTitle}}</h5>
     
-    <form action="/Animal/{{ $animal->id }}" method="POST">
+    <form action="/Animal/{{ $animal->id }}"  enctype="multipart/form-data" method="POST">
          <!-- Text input-->
          @method('PUT')
          @csrf
@@ -37,9 +37,36 @@
                     <option value="Reptile">Reptile</option>
                 </select>
              </div>
+                         <!-- Multiple Radios FOR GENDER -->
+                         <div class="form-group">
+                                <label for="body">Gender</label>
+                                <div class="form-group">
+                                <div class="radio">
+                                  <label for="radios-0">
+                                    <input type="radio" name="radios" id="radios-0" value="1">
+                                    Male
+                                  </label>
+                                  </div>
+                                <div class="radio">
+                                  <label for="radios-1">
+                                    <input type="radio" name="radios" id="radios-1" value="0">
+                                    Female
+                                  </label>
+                                  </div>
+                                </div>
+                         </div>
+            
              
              <!-- date of birth picker -->
              @include('partials/dob')
+
+             
+            <!-- file explorer -->
+            <div class="form-group">
+               
+                    <input type="file" name="cover_image" accept="image/png, image/jpeg"">
+    
+                </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>
     </form>

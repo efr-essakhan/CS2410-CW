@@ -4,27 +4,43 @@
     AstonAdoptAnimals
 @endsection
 @section('content')
-<h1>Animal profiles:</h1>
+<h1>Animal profiles up for adoption:</h1>
 @if(count($animals) > 0)
     @foreach($animals as $animal)
-        <div class="card card-body bg-light">
-            <div class="float-left">
+    <div class="card card-body bg-light">
+            <div class="row">
                 <div class="col-md-4 col-sm-4">
-                    <!--img style="width:100%" src="/storage/cover_images/{$post->cover_image}}"-->
+                    <img  class="img-thumbnail" style="width:75%; border:1px solid black;" src="/storage/cover_images/{{$animal->cover_image}}">
                 </div>
                 <div class="col-md-8 col-sm-8">
-                    <h3>{{$animal->nameTitle}}</h3>
-                    <p class="card-text">{!!$animal->description!!}</p>
-               
-                </div>
-                <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                            <a href="/Animal/{{$animal->id}}" class="btn btn-success pull-right" role="button">View profile</a>
-                        </div>
-                        <small class="text-muted">(id:{{$animal->id}})</small>
+                    <h3><a href="/Animal/{{$animal->id}}">{{$animal->nameTitle}}</a></h3>
+                    <p><b>Type: </b> {{$animal->animaltype}}</p>
+                    @php    
+                    //calculate DOB
+                    $tz  = new DateTimeZone('Europe/Brussels');
+                    $age = DateTime::createFromFormat('Y-m-d', $animal->dob, $tz)
+                    ->diff(new DateTime('now', $tz))
+                    ->y;
+
+                         //workout gender
+                         $gender = '-';
+                        if($animal->gender == 1){
+                            $gender = 'Male';
+                        }
+                        else{
+                            $gender = 'female';
+                        }
+
+                    @endphp
+                    <p><b>Age: </b> {{$age}}</p>
+                    <p><b>Gender: </b> {{$gender}}</p>
+                    <small>Available since: {{$animal->created_at}}</small>
+                    <small class="text-muted float-right">(id:{{$animal->id}})</small>
                 </div>
             </div>
         </div>
+       
+  
     @endforeach
     {{$animals->links()}}
 @else

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Animal; //using eloquent, allows us to do database queries in other then SQL.
 use App\User;
+use Illuminate\Support\Facades\Storage;
 class AnimalController extends Controller
 {
     /**
@@ -41,20 +42,44 @@ class AnimalController extends Controller
     {
         //validation
         $this->validate($request, [
-            'title' => 'required',
-            'body' => 'required',
+            'title' => 'required|max:30',
+            'body' => 'required|max:9999',
             'animaltype' => 'required',
+            'radios'  => 'required',
             'dob-day' => 'required',
             'dob-month' => 'required',
-            'dob-year' => 'required'
+            'dob-year' => 'required',
+            'cover_image' => 'image|nullable|max:1999'
 
         ]);
+
+        //handle file upload
+        if($request->hasFile('cover_image')){
+            //get file name with extension
+            $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
+            //get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+
+            //get just extension
+            $extension = $request->file('cover_image')->getClientOriginalExtension();
+
+            // filename to store
+            $fileNameToStore = $filename . '_' .time(). '.' . $extension; //unique filename
+
+            //upload image
+            $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
+
+        } else {
+            $fileNameToStore = 'noimage.jpg';
+        }
            
         //using tinker to store the animal data into the DB
         $animal = new Animal;
         $animal->nameTitle = $request->input('title');
         $animal->description = $request->input('body');
         $animal->animaltype = $request->input('animaltype');
+        $animal->gender = $request->input('radios');
+        $animal->cover_image = $fileNameToStore;
 
         //Entering DOB into DB by concatinating drop down values.
         $dob = $request->input('dob-year') . '-' . $request->input('dob-month') . '-' . $request->input('dob-day');
@@ -105,20 +130,45 @@ class AnimalController extends Controller
     {
               //validation
               $this->validate($request, [
-                'title' => 'required',
-                'body' => 'required',
+                'title' => 'required|max:30',
+             'body' => 'required|max:9999',
                 'animaltype' => 'required',
                 'dob-day' => 'required',
                 'dob-month' => 'required',
-                'dob-year' => 'required'
+                'radios'  => 'required',
+                'dob-year' => 'required',
+                'dob-year' => 'required',
+                'cover_image' => 'image|nullable|max:1999'
     
             ]);
+              //handle file upload
+        if($request->hasFile('cover_image')){
+            //get file name with extension
+            $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
+            //get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+
+            //get just extension
+            $extension = $request->file('cover_image')->getClientOriginalExtension();
+
+            // filename to store
+            $fileNameToStore = $filename . '_' .time(). '.' . $extension; //unique filename
+
+            //upload image
+            $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
+
+        }
         
             //Find animal data in DB and alter.
             $animal = Animal::find($id);
             $animal->nameTitle = $request->input('title');
             $animal->description = $request->input('body');
             $animal->animaltype = $request->input('animaltype');
+            $animal->gender = $request->input('radios');
+            //if upload a new image
+            if($request->hasFile('cover_image')){
+                $animal->cover_image = $fileNameToStore;
+            }
 
             //Entering DOB into DB by concatinating drop down values.
             $dob = $request->input('dob-year') . '-' . $request->input('dob-month') . '-' . $request->input('dob-day');
@@ -139,6 +189,11 @@ class AnimalController extends Controller
     {
         $animal = Animal::find($id);
 
+        //Delete animal picture from file
+        if($animal->cover_image != 'noimage.jpg'){
+            // Delete Image
+            Storage::delete('public/cover_images/'. $animal->cover_image);
+        }
         // delete the record from the animal table.
         $animal->delete();
         return redirect('/Animal')->with('success', 'Animal Profile Deleted');

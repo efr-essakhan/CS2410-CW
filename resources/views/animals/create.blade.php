@@ -7,7 +7,7 @@
 
     <h1>Create a new Animal profile for adoption</h1>
     
-    <form method="post" action="{{ route('Animal.store') }}">
+    <form method="post" enctype="multipart/form-data" action="{{ route('Animal.store') }}">
          <!-- Text input-->
             <div class="form-group">
                 @csrf            
@@ -32,9 +32,35 @@
                 <option value="Reptile">Reptile</option>
                 </select>
              </div>
+
+                 <!-- Multiple Radios FOR GENDER -->
+            <div class="form-group">
+                    <label for="body">Gender</label>
+                    <div class="form-group">
+                    <div class="radio">
+                      <label for="radios-0">
+                        <input type="radio" name="radios" id="radios-0" value="1">
+                        Male
+                      </label>
+                      </div>
+                    <div class="radio">
+                      <label for="radios-1">
+                        <input type="radio" name="radios" id="radios-1" value="0">
+                        Female
+                      </label>
+                      </div>
+                    </div>
+             </div>
             
              <!-- date of birth picker -->
              @include('partials/dob')
+
+            <!-- file explorer -->
+            <div class="form-group">
+               
+                <input type="file" name="cover_image" accept="image/png, image/jpeg"">
+
+            </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>
     </form>
