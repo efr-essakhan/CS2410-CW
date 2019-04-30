@@ -1,5 +1,5 @@
 <div class="form-group">
-    <label for="dob-day" class="control-label">Date of birth</label>
+    <label for="dob-day" class="control-label">* Date of birth</label>
     <div class="controls">
         <select name="dob-day" id="dob-day">
             <option value="">Day</option>

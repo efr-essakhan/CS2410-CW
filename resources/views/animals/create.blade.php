@@ -10,19 +10,19 @@ AstonAdoptAnimals
     <!-- Text input-->
     <div class="form-group">
         @csrf
-        <label for="title">Profile Title</label>
+        <label for="title">* Profile Title <small> 30 word limit</small></label>
         <input maxlength="30" type="text" class="form-control" name="title" placeholder="Title" />
     </div>
     <!-- Text input-->
     <div class="form-group">
-        <label for="body">Profile Description</label>
+        <label for="body">* Profile Description <small> 9999 word limit</small></label>
         <textarea maxlength="9999" class="form-control" name="body" id="article-ckeditor" cols="30" rows="10"
             placeholder="Body Text"></textarea>
     </div>
 
     <!-- Drop down list-->
     <div class="form-group">
-        <label for="body">Animal Type</label>
+        <label for="body">* Animal Type</label>
         <select id="sadsad" name="animaltype" class="form-control">
             <option value="Bird">Bird</option>
             <option value="Cat">Cat</option>
@@ -35,7 +35,7 @@ AstonAdoptAnimals
 
     <!-- Multiple Radios FOR GENDER -->
     <div class="form-group">
-        <label for="body">Gender</label>
+        <label for="body">* Gender</label>
         <div class="form-group">
             <div class="radio">
                 <label for="radios-0">
@@ -55,6 +55,7 @@ AstonAdoptAnimals
     <!-- date of birth picker -->
     @include('partials/dob')
 
+    
     <!-- file explorer -->
     <div class="form-group">
         Cover/main image (png or jpeg):

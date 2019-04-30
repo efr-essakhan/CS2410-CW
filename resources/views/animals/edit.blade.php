@@ -14,13 +14,13 @@ AstonAdoptAnimals
     @csrf
 
     <div class="form-group">
-        <label for="title">Post Title</label>
+        <label for="title">* Post Title <small> 30 word limit</small></label>
         <input maxlength="30" type="text" class="form-control" name="title" id="title" placeholder="title"
             value="{{$animal->nameTitle}}">
     </div>
 
     <div class="form-group">
-        <label for="body">Post Body</label>
+        <label for="body">* Profile Description <small> 9999 word limit</small></label>
         <textarea  maxlength="9999"class="form-control" id="article-ckeditor" name="body" cols="30" rows="10"
             value="{{$animal->description}}">{{$animal->description}}</textarea>
     </div>
@@ -28,7 +28,7 @@ AstonAdoptAnimals
 
     <!-- Drop down list-->
     <div class="form-group">
-        <label for="body">Animal Type</label>
+        <label for="body">* Animal Type</label>
         <select id="sadsad" name="animaltype" class="form-control">
             <option value="Bird">Bird</option>
             <option value="Cat">Cat</option>
@@ -40,7 +40,7 @@ AstonAdoptAnimals
     </div>
     <!-- Multiple Radios FOR GENDER -->
     <div class="form-group">
-        <label for="body">Gender</label>
+        <label for="body">* Gender</label>
         <div class="form-group">
             <div class="radio">
                 <label for="radios-0">
