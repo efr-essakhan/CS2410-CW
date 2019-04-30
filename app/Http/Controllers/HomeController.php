@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\User;
 
 class HomeController extends Controller
@@ -19,7 +17,7 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Show the application dashboard which in this case is a management page.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -34,5 +32,4 @@ class HomeController extends Controller
         return view('user.managerequest')->with('animals', $user->animals);
     }
 
-    
 }

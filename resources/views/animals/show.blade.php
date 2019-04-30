@@ -6,7 +6,8 @@ AstonAdoptAnimals
 @section('content')
 
 <!--Main layout-->
-<main class="mt-5 pt-4">
+<main class="mt-4 pt-4">
+    <h1> Animal profile </h1>
     <div class="container dark-grey-text mt-5">
 
         <!--Grid row-->
@@ -14,7 +15,7 @@ AstonAdoptAnimals
 
             <!--Picture and slides-->
 
-            <div class="col-md-6 mb-4 row justify-content-center">
+            <div class="col-md-6 mb-6 row justify-content-center">
 
                 <div class="col-md-8 col-sm-8">
                     <img class="mySlides" style="width:100%; border:1px solid black;"
@@ -81,9 +82,9 @@ AstonAdoptAnimals
                 <!--Content-->
                 <div class="p-4">
                     <ul class="list-group">
-                        <li class="list-group-item"><b>Animal profile title:</b> {!!$animal->nameTitle!!}</li>
-                        <li class="list-group-item"><b>Age: </b> {{$age}} (dob: {{ $animal->dob}})</li>
-                        <li class="list-group-item"><b>Gender: </b> {{$gender}}</li>
+                        <li class="list-group-item"><b>Animal profile title:</b><br> {{$animal->nameTitle}}</li>
+                        <li class="list-group-item"><b>Age: </b><br> {{$age}} (dob: {{ $animal->dob}})</li>
+                        <li class="list-group-item"><b>Gender: </b><br> {{$gender}}</li>
                         <li class="list-group-item"><b>Description:</b>
                             <p>{!!$animal->description!!}</p>
                         </li>
@@ -100,8 +101,8 @@ AstonAdoptAnimals
                     <form class="d-flex justify-content-left">
 
                         @php
-                        //Logic to check the 'status' comulmn of the pivot table which is used to determine what buttons
-                        and data to display on the page for the user.
+                        //Logic to check the 'status' comulmn of the pivot table which is used to determine what buttons 
+                        //and data to display on the page for the user.
                         $user_id = auth()->user()->id;
 
                         $user = App\User::find($user_id);
@@ -155,7 +156,7 @@ AstonAdoptAnimals
 
 
                         </div>
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-danger">Delete Profile</button>
                         <!-- Edit button -->
                         <a class="btn btn-info" role="button" href="/Animal/{{$animal->id}}/edit">Edit Profile</a>
                     </form>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -38,7 +38,7 @@
                         <tbody>
                             <tr>
                                 <td>{{$animal->nameTitle}}</td>
-                                <td>{{$animal->id}} </td>
+                                <td><a style="color:Aqua" href="/Animal/{{$animal->id}}">{{$animal->id}}</a></td>
                                 <td>{{$animal->pivot->created_at}}</td>
                                 <td>{{$status}}</td>
                                 <td>
@@ -93,18 +93,18 @@
 
                         @php
                         $status = $user_animal->pivot->status;
-
-                        //dd($status);
                         @endphp
 
                         @if($status == 'Waiting')
 
                         <tbody>
                             <tr>
+                                    
+
                                 <td>{{$user->id}}</td>
                                 <td>{{$user->email}}</td>
                                 <td>{{$user_animal->pivot->created_at}}</td>
-                                <td>{{$user_animal->id}}</td>
+                                <td><a style="color:Aqua" href="/Animal/{{$user_animal->id}}">{{$user_animal->id}}</a></td>
                                 <td>
                                     @if($status == 'Waiting')
 
@@ -129,7 +129,7 @@
                         @endif
 
                     </table>
-                    <p>If the above table is empty it means that there are no Requests to respond to.</p>
+                    <small>(If the above table is empty it means that there are no Requests to respond to.)</small>
                     @endcan
                 </div>
             </div>

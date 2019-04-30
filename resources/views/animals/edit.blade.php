@@ -15,13 +15,13 @@ AstonAdoptAnimals
 
     <div class="form-group">
         <label for="title">Post Title</label>
-        <input type="text" class="form-control" name="title" id="title" placeholder="title"
+        <input maxlength="30" type="text" class="form-control" name="title" id="title" placeholder="title"
             value="{{$animal->nameTitle}}">
     </div>
 
     <div class="form-group">
         <label for="body">Post Body</label>
-        <textarea class="form-control" id="article-ckeditor" name="body" cols="30" rows="10"
+        <textarea  maxlength="9999"class="form-control" id="article-ckeditor" name="body" cols="30" rows="10"
             value="{{$animal->description}}">{{$animal->description}}</textarea>
     </div>
 

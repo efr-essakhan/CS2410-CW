@@ -50,7 +50,7 @@
 
                         <tbody>
                             <tr>
-                                <td><a style="color:yellow" href="/Animal/{{$user_animal->id}}">{{$user_animal->id}}</a>
+                                <td><a style="color:Aqua" href="/Animal/{{$user_animal->id}}">{{$user_animal->id}}</a>
                                 </td>
                                 <td><img style="width:20%" src="/storage/cover_images/{{$user_animal->cover_image}}">
                                 </td>

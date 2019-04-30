@@ -38,14 +38,14 @@
     <!-- Adding a bar on top asking the guest to login -->
     <div class="alert alert-dark" role="alert">
         <div class="text-center">
-            <h6>Please login to access all features of the system.</h6>
+            <h6>Welcome! Please login.</h6>
         </div>
     </div>
     @else
     <!-- If it is not a guest we still want some padding below the Navbar. -->
     <div style="margin-top: 20px;">
 
-    </div>{}
+    </div>
     @endguest
 
     <div class="container">
@@ -55,7 +55,12 @@
     </div>
 
 
+    <!--CKEDITOR-->
+    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('article-ckeditor');
 
+    </script>
     @yield('scripts')
 
 

@@ -11,12 +11,12 @@ AstonAdoptAnimals
     <div class="form-group">
         @csrf
         <label for="title">Profile Title</label>
-        <input type="text" class="form-control" name="title" placeholder="Title" />
+        <input maxlength="30" type="text" class="form-control" name="title" placeholder="Title" />
     </div>
     <!-- Text input-->
     <div class="form-group">
         <label for="body">Profile Description</label>
-        <textarea class="form-control" name="body" id="article-ckeditor" cols="30" rows="10"
+        <textarea maxlength="9999" class="form-control" name="body" id="article-ckeditor" cols="30" rows="10"
             placeholder="Body Text"></textarea>
     </div>
 

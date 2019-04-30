@@ -24,6 +24,5 @@ Route::get('/viewanimalsdata', 'Animal_usersController@viewAnimalData');
 Route::get('/', 'AnimalController@index'); // just incase anything redricts to '/'
 Route::resource('Animal', 'AnimalController');
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 
